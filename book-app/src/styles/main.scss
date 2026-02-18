@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-header {
+    background: #0b5fff;
+    padding: 1rem;
+    color: white;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.main-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.publishers-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.publishers-table th,
+.publishers-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.page-title {
+    margin: 0 0 1rem 0;
+}
+
+.error {
+    color: red;
+    margin-bottom: 1rem;
+}
