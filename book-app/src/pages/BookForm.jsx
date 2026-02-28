@@ -16,14 +16,20 @@ const BookForm = () => {
     const [publishers, setPublishers] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
+    const fetchData = async () => {
+        const a = await getAllAuthors();
+        setAuthors(a);
+        const p = await getAllPublishers();
+        setPublishers(p);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     useEffect(() => {
         (async () => {
             try {
-                const a = await getAllAuthors();
-                setAuthors(a);
-                const p = await getAllPublishers();
-                setPublishers(p);
-
                 if (isEdit) {
                     const book = await getBookById(id);
                     reset({
