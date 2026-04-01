@@ -5,6 +5,7 @@ import Publishers from './pages/Publishers';
 import Books from './pages/Books';
 import BookForm from './pages/BookForm';
 import AuthorsPagination from './pages/AuthorsPagination';
+import SortPublishers from './pages/SortPublishers';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/books/create" element={<BookForm />} />
             <Route path="/books/edit/:id" element={<BookForm />} />
             <Route path="/authors/pagination" element={<AuthorsPagination />} />
+            <Route path="/publishers/sort" element={<SortPublishers />} />
           </Routes>
         </main>
       </div>
