@@ -49,6 +49,7 @@ const Books = () => {
                         <th>Title</th>
                         <th>PageCount</th>
                         <th>PublishedDate</th>
+                        <th>Age</th>
                         <th>ISBN</th>
                         <th>Author</th>
                         <th>Publisher</th>
@@ -62,9 +63,10 @@ const Books = () => {
                             <td>{b.title}</td>
                             <td>{b.pageCount}</td>
                             <td>{new Date(b.publishedDate).toLocaleDateString()}</td>
+                            <td>{b.age}</td>
                             <td>{b.isbn}</td>
-                            <td>{b.author ? b.author.fullName : '—'}</td>
-                            <td>{b.publisher ? b.publisher.name : '—'}</td>
+                            <td>{b.authorFullName}</td>
+                            <td>{b.publisherName}</td>
                             <td>
                                 <button className="btn btn-edit" onClick={() => handleEdit(b.id)}>Edit</button>
                                 <button className="btn btn-delete" onClick={() => handleDelete(b.id)}>Delete</button>

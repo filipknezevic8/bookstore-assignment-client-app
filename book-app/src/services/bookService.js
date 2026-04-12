@@ -26,3 +26,20 @@ export const updateBook = async (id, book) => {
     const response = await AxiosConfig.put(`${RESOURCE}/${id}`, book);
     return response.data;
 }
+
+export const fetchSortedBooks = async (sortType) => {
+    let response = null;
+
+    if (sortType !== undefined && sortType !== null && sortType !== '') {
+        response = await AxiosConfig.get(`${RESOURCE}/sort?sortType=${sortType}`);
+    } else {
+        response = await AxiosConfig.get(`${RESOURCE}/sort`);
+    }
+
+    return response.data;
+}
+
+export const fetchSortTypes = async () => {
+    const response = await AxiosConfig.get(`${RESOURCE}/sortTypes`);
+    return response.data;
+}
