@@ -43,3 +43,15 @@ export const fetchSortTypes = async () => {
     const response = await AxiosConfig.get(`${RESOURCE}/sortTypes`);
     return response.data;
 }
+
+export const fetchFilteredAndSortedBooks = async (data, sortType) => {
+    let response = null;
+
+    if (sortType !== undefined && sortType !== null && sortType !== '') {
+        response = await AxiosConfig.post('/Books/filterAndSort?sortType=' + sortType, data);
+    } else {
+        response = await AxiosConfig.post('/Books/filterAndSort', data);
+    }
+
+    return response.data;
+}
