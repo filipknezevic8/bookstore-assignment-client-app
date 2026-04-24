@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Publishers from './pages/Publishers';
 import Books from './pages/Books';
@@ -7,26 +7,54 @@ import BookForm from './pages/BookForm';
 import AuthorsPagination from './pages/AuthorsPagination';
 import SortPublishers from './pages/SortPublishers';
 import SortBooks from './pages/SortBooks';
+import Login from './pages/Login';
+import UserContext from './UserContext';
+
+const RequireAuth = ({ children }) => {
+  const { user } = useContext(UserContext);
+  return user ? children : <Navigate to="/" replace />;
+};
+
+const RequireEditor = ({ children }) => {
+  const { user } = useContext(UserContext);
+  return user && user.role === 'Editor' ? children : <Navigate to="/" replace />;
+};
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUser(payload);
+      } catch (err) {
+        localStorage.removeItem('token');
+      }
+    }
+  }, []);
+
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<h1 className="page-title">Welcome to Bookstore</h1>} />
-            <Route path="/publishers" element={<Publishers />} />
-            <Route path="/books" element={<Books />} />
-            <Route path="/books/create" element={<BookForm />} />
-            <Route path="/books/edit/:id" element={<BookForm />} />
-            <Route path="/authors/pagination" element={<AuthorsPagination />} />
-            <Route path="/publishers/sort" element={<SortPublishers />} />
-            <Route path="/books/sort" element={<SortBooks />} />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <div className="app">
+          <Header />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/publishers" element={<Publishers />} />
+              <Route path="/books" element={<Books />} />
+              <Route path="/books/create" element={<RequireAuth><BookForm /></RequireAuth>} />
+              <Route path="/books/edit/:id" element={<RequireEditor><BookForm /></RequireEditor>} />
+              <Route path="/authors/pagination" element={<AuthorsPagination />} />
+              <Route path="/publishers/sort" element={<SortPublishers />} />
+              <Route path="/books/sort" element={<SortBooks />} />
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 };
 

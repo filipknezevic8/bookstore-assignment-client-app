@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getAllBooks, deleteBook } from '../services/bookService';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../UserContext';
 import './books.scss';
 
 const Books = () => {
     const [books, setBooks] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
+
+    const role = user ? user.role : null;
 
     const fetchData = async () => {
         try {
@@ -53,7 +57,7 @@ const Books = () => {
                         <th>ISBN</th>
                         <th>Author</th>
                         <th>Publisher</th>
-                        <th>Actions</th>
+                        {role === 'Editor' && <th>Actions</th>}
                     </tr>
                 </thead>
                 <tbody>
@@ -67,10 +71,12 @@ const Books = () => {
                             <td>{b.isbn}</td>
                             <td>{b.authorFullName}</td>
                             <td>{b.publisherName}</td>
-                            <td>
-                                <button className="btn btn-edit" onClick={() => handleEdit(b.id)}>Edit</button>
-                                <button className="btn btn-delete" onClick={() => handleDelete(b.id)}>Delete</button>
-                            </td>
+                            {role === 'Editor' && (
+                                <td>
+                                    <button className="btn btn-edit" onClick={() => handleEdit(b.id)}>Edit</button>
+                                    <button className="btn btn-delete" onClick={() => handleDelete(b.id)}>Delete</button>
+                                </td>
+                            )}
                         </tr>
                     ))}
                 </tbody>
