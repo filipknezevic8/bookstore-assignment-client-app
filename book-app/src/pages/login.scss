@@ -65,3 +65,29 @@
         background-color: #0b5ed7;
     }
 }
+
+.google-btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        background-color: #f7f8f9;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}

@@ -47,6 +47,13 @@ const Login = () => {
         }
     };
 
+    const handleGoogleLogin = () => {
+        window.open(
+            "http://localhost:8351/api/Auth/google-login",
+            "width=500,height=600"
+        );
+    };
+
     return (
         <div className="login-page">
             <form onSubmit={handleLogin} className="login-card">
@@ -72,6 +79,18 @@ const Login = () => {
                 </div>
 
                 <button type="submit" className="login-btn">Prijavi se</button>
+                <button
+                    type="button"
+                    onClick={handleGoogleLogin}
+                    className="google-btn"
+                >
+                    <img
+                        src="https://www.svgrepo.com/show/475656/google-color.svg"
+                        alt="google"
+                        className="google-icon"
+                    />
+                    Login with Google
+                </button>
             </form>
         </div>
     );

@@ -9,6 +9,7 @@ import SortPublishers from './pages/SortPublishers';
 import SortBooks from './pages/SortBooks';
 import Login from './pages/Login';
 import UserContext from './UserContext';
+import GoogleCallback from './pages/GoogleCallback';
 
 const RequireAuth = ({ children }) => {
   const { user } = useContext(UserContext);
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/authors/pagination" element={<AuthorsPagination />} />
               <Route path="/publishers/sort" element={<SortPublishers />} />
               <Route path="/books/sort" element={<SortBooks />} />
+              <Route path="/google-callback" element={<GoogleCallback />} />
             </Routes>
           </main>
         </div>
