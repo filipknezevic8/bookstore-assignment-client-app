@@ -5,7 +5,7 @@ import LogoutButton from './LogoutButton';
 
 const Header = () => {
     const { user } = useContext(UserContext);
-    
+
     return (
         <header className="site-header">
             <nav className="nav">
@@ -18,6 +18,18 @@ const Header = () => {
                 {user && (
                     <Link className="nav-link" to="/books/create">Create book</Link>
                 )}
+
+                {user?.role == "Editor" && (
+                    <>
+                        <Link className="nav-link" to="/volumes/search">Search volumes</Link>
+                    </>
+                )}
+
+                {/* {user && (
+                    <>
+                        <Link className="nav-link" to="/volumes/search">Search volumes</Link>
+                    </>
+                )} */}
 
                 {user ? (
                     <LogoutButton />

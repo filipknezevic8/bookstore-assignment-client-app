@@ -1,0 +1,74 @@
+.search-page {
+    padding: 1rem 0;
+}
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 260px;
+}
+
+.search-btn {
+    padding: 0.5rem 0.9rem;
+    border: none;
+    border-radius: 4px;
+    background: #0d6efd;
+    color: white;
+    cursor: pointer;
+}
+
+.search-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.search-table th,
+.search-table td {
+    border: 1px solid #070000;
+    padding: 0.5rem;
+}
+
+.search-subtitle {
+    margin-top: -0.25rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.issue-form-card {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.issue-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row input,
+.form-row textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.field-error {
+    color: red;
+    font-size: 0.85rem;
+}
